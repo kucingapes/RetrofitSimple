@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void generateList(List<Model> list) {
+    private void generateList(List<Model> body) {
         recyclerView = findViewById(R.id.recycler);
-        myAdapter = new MyAdapter(list, this);
+        myAdapter = new MyAdapter(body, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new MarginDecorationKece(15, MarginDecorationKece.VERTICAL));

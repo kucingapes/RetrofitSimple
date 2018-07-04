@@ -1,7 +1,10 @@
 package utsman.kucingapes.retrofitsimple;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,11 +36,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolderView> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolderView myHolderView, int i) {
+    public void onBindViewHolder(@NonNull final MyHolderView myHolderView, @SuppressLint("RecyclerView") final int i) {
         myHolderView.judul.setText(modelList.get(i).getTitle());
         Glide.with(context)
                 .load(modelList.get(i).getThumbnailUrl())
                 .into(myHolderView.imageView);
+
+        myHolderView.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailPhoto.class);
+                intent.putExtra("url", modelList.get(i).getUrl());
+                intent.putExtra("title", modelList.get(i).getTitle());
+                intent.putExtra("id", modelList.get(i).getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -48,10 +62,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolderView> {
     public class MyHolderView extends RecyclerView.ViewHolder {
         public TextView judul;
         public ImageView imageView;
+        public CardView cardView;
         public MyHolderView(@NonNull View itemView) {
             super(itemView);
             judul = itemView.findViewById(R.id.judul);
             imageView = itemView.findViewById(R.id.img);
+            cardView = itemView.findViewById(R.id.card_item);
         }
     }
 }
