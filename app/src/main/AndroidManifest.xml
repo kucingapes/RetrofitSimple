@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailPhoto"></activity>
+        <activity android:name=".DetailPhoto" />
+        <activity android:name=".Favorit"></activity>
     </application>
 
 </manifest>
